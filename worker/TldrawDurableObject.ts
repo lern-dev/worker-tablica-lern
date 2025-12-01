@@ -5,12 +5,24 @@ import {
 	// defaultBindingSchemas,
 	defaultShapeSchemas,
 } from '@tldraw/tlschema'
+import { T } from '@tldraw/validate' // <--- Zmiana: Import T z właściwej paczki
 import { AutoRouter, IRequest, error } from 'itty-router'
 import throttle from 'lodash.throttle'
 
+// 1. Definicja schematu dla kształtu cuboid (musi odpowiadać propsom z Frontendu)
+const cuboidShapeSchema = {
+	props: {
+		w: T.number,
+		h: T.number,
+	},
+}
+
 // add custom shapes and bindings here if needed:
 const schema = createTLSchema({
-	shapes: { ...defaultShapeSchemas },
+	shapes: {
+		...defaultShapeSchemas,
+		cuboid: cuboidShapeSchema, // Rejestracja niestandardowego kształtu
+	},
 	// bindings: { ...defaultBindingSchemas },
 })
 
