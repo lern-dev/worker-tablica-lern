@@ -21,6 +21,7 @@ export function Room() {
 			<Tldraw
 				// we can pass the connected store into the Tldraw component which will handle
 				// loading states & enable multiplayer UX like cursors & a presence menu
+				licenseKey="tldraw-2026-02-16/WyI4M3RtdU1vZSIsWyIqIl0sMTYsIjIwMjYtMDItMTYiXQ.UHFDSF2Gx8JGN0XiXhMuLu7b58jfq3y8RF09Om49F+583F+Od2Kn8YHo3x3S0B3AWapjbcWSJPIAJ0Je1fLp6Q"
 				store={store}
 				deepLinks
 				onMount={(editor) => {
