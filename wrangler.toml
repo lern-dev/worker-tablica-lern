@@ -6,9 +6,6 @@ compatibility_flags = ["nodejs_compat"]
 upload_source_maps = true
 preview_urls = true
 
-[[routes]]
-pattern = " https://multiplayer-template.oskar0skutnik.workers.dev"
-custom_domain = true
 
 [observability]
 enabled = true
