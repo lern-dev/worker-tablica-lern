@@ -17,11 +17,22 @@ const cuboidShapeSchema = {
 	},
 }
 
+// 2. Definicja schematu dla układu kartezjańskiego (axes)
+// Musi odpowiadać propsom zdefiniowanym w AxesShapeUtil na frontendzie
+const axesShapeSchema = {
+	props: {
+		w: T.number,
+		h: T.number,
+		tickStep: T.number,
+	},
+}
+
 // add custom shapes and bindings here if needed:
 const schema = createTLSchema({
 	shapes: {
 		...defaultShapeSchemas,
-		cuboid: cuboidShapeSchema, // Rejestracja niestandardowego kształtu
+		cuboid: cuboidShapeSchema, // Rejestracja starego kształtu (opcjonalne)
+		axes: axesShapeSchema,     // <--- NOWE: Rejestracja układu kartezjańskiego
 	},
 	// bindings: { ...defaultBindingSchemas },
 })
