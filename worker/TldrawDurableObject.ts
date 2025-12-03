@@ -34,8 +34,24 @@ const pyramidShapeSchema = {
     },
 }
 
-// 4. NOWE: Definicja schematu dla kształtu triangular_pyramid (ostrosłup trójkątny)
+// 4. Definicja schematu dla kształtu triangular_pyramid (ostrosłup trójkątny)
 const triangularPyramidShapeSchema = {
+    props: {
+        w: T.number,
+        h: T.number,
+    },
+}
+
+// 5. NOWE: Definicja schematu dla kształtu cone (stożek)
+const coneShapeSchema = {
+    props: {
+        w: T.number,
+        h: T.number,
+    },
+}
+
+// 6. NOWE: Definicja schematu dla kształtu sphere (kula)
+const sphereShapeSchema = {
     props: {
         w: T.number,
         h: T.number,
@@ -49,7 +65,9 @@ const schema = createTLSchema({
         cuboid: cuboidShapeSchema,
         axes: axesShapeSchema,
         pyramid: pyramidShapeSchema,
-        triangular_pyramid: triangularPyramidShapeSchema, // <--- Rejestracja ostrosłupa trójkątnego
+        triangular_pyramid: triangularPyramidShapeSchema,
+        cone: coneShapeSchema,      // <--- Rejestracja stożka
+        sphere: sphereShapeSchema,  // <--- Rejestracja kuli
     },
     // bindings: { ...defaultBindingSchemas },
 })
