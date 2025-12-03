@@ -26,9 +26,16 @@ const axesShapeSchema = {
     },
 }
 
-// 3. NOWE: Definicja schematu dla kształtu pyramid (ostrosłup)
-// Musi odpowiadać propsom zdefiniowanym w PyramidShapeUtil na frontendzie
+// 3. Definicja schematu dla kształtu pyramid (ostrosłup czworokątny)
 const pyramidShapeSchema = {
+    props: {
+        w: T.number,
+        h: T.number,
+    },
+}
+
+// 4. NOWE: Definicja schematu dla kształtu triangular_pyramid (ostrosłup trójkątny)
+const triangularPyramidShapeSchema = {
     props: {
         w: T.number,
         h: T.number,
@@ -41,7 +48,8 @@ const schema = createTLSchema({
         ...defaultShapeSchemas,
         cuboid: cuboidShapeSchema,
         axes: axesShapeSchema,
-        pyramid: pyramidShapeSchema, // <--- Rejestracja nowego kształtu
+        pyramid: pyramidShapeSchema,
+        triangular_pyramid: triangularPyramidShapeSchema, // <--- Rejestracja ostrosłupa trójkątnego
     },
     // bindings: { ...defaultBindingSchemas },
 })
