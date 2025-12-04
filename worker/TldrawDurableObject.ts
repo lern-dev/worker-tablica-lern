@@ -42,7 +42,7 @@ const triangularPyramidShapeSchema = {
     },
 }
 
-// 5. NOWE: Definicja schematu dla kształtu cone (stożek)
+// 5. Definicja schematu dla kształtu cone (stożek)
 const coneShapeSchema = {
     props: {
         w: T.number,
@@ -50,11 +50,21 @@ const coneShapeSchema = {
     },
 }
 
-// 6. NOWE: Definicja schematu dla kształtu sphere (kula)
+// 6. Definicja schematu dla kształtu sphere (kula)
 const sphereShapeSchema = {
     props: {
         w: T.number,
         h: T.number,
+    },
+}
+
+// 7. NOWE: Definicja schematu dla kształtu right_triangle (trójkąt prostokątny)
+const rightTriangleShapeSchema = {
+    props: {
+        w: T.number,
+        h: T.number,
+        flipX: T.boolean, // Właściwość do odwracania w poziomie
+        flipY: T.boolean, // Właściwość do odwracania w pionie
     },
 }
 
@@ -66,8 +76,9 @@ const schema = createTLSchema({
         axes: axesShapeSchema,
         pyramid: pyramidShapeSchema,
         triangular_pyramid: triangularPyramidShapeSchema,
-        cone: coneShapeSchema,      // <--- Rejestracja stożka
-        sphere: sphereShapeSchema,  // <--- Rejestracja kuli
+        cone: coneShapeSchema,
+        sphere: sphereShapeSchema,
+        right_triangle: rightTriangleShapeSchema, // <--- Rejestracja trójkąta
     },
     // bindings: { ...defaultBindingSchemas },
 })
