@@ -58,7 +58,7 @@ const sphereShapeSchema = {
     },
 }
 
-// 7. NOWE: Definicja schematu dla kształtu right_triangle (trójkąt prostokątny)
+// 7. Definicja schematu dla kształtu right_triangle (trójkąt prostokątny)
 const rightTriangleShapeSchema = {
     props: {
         w: T.number,
@@ -78,7 +78,7 @@ const schema = createTLSchema({
         triangular_pyramid: triangularPyramidShapeSchema,
         cone: coneShapeSchema,
         sphere: sphereShapeSchema,
-        right_triangle: rightTriangleShapeSchema, // <--- Rejestracja trójkąta
+        right_triangle: rightTriangleShapeSchema,
     },
     // bindings: { ...defaultBindingSchemas },
 })
@@ -122,6 +122,33 @@ export class TldrawDurableObject {
                 })
             }
             return this.handleConnect(request)
+        })
+        // ---------------------------------------------------------------
+        // NOWY ENDPOINT: HTTP GET (Read-only Snapshot)
+        // ---------------------------------------------------------------
+        .get('/api/board/:roomId', async (request) => {
+            // 1. Inicjalizacja ID (dla bezpieczeństwa, tak jak przy connect)
+            if (!this.roomId) {
+                await this.ctx.blockConcurrencyWhile(async () => {
+                    await this.ctx.storage.put('roomId', request.params.roomId)
+                    this.roomId = request.params.roomId
+                })
+            }
+
+            // 2. Pobierz instancję pokoju (z pamięci lub R2)
+            const room = await this.getRoom()
+
+            // 3. Pobierz aktualny stan danych (snapshot)
+            const snapshot = room.getCurrentSnapshot()
+
+            // 4. Zwróć jako zwykły JSON
+            return new Response(JSON.stringify(snapshot), {
+                headers: {
+                    'Content-Type': 'application/json',
+                    // Dodaj CORS, aby frontend mógł pobrać dane
+                    'Access-Control-Allow-Origin': '*', 
+                },
+            })
         })
 
     // `fetch` is the entry point for all requests to the Durable Object
