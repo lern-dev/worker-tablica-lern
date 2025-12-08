@@ -30,3 +30,6 @@ new_sqlite_classes = ["TldrawDurableObject"]
 binding = 'TLDRAW_BUCKET'
 bucket_name = 'multiplayer-template'
 preview_bucket_name = 'multiplayer-template-preview'
+
+[workers]
+usage_model = "bundled"
